@@ -1,0 +1,12 @@
+services:
+  watchtower:
+    container_name: watchtower
+    image: ghcr.io/containrrr/watchtower:latest
+    restart: unless-stopped
+    environment:
+      - WATCHTOWER_CLEANUP=1
+      - WATCHTOWER_INCLUDE_RESTARTING=1
+      - WATCHTOWER_POLL_INTERVAL=60
+      - WATCHTOWER_LABEL_ENABLE=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
