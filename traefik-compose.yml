@@ -1,9 +1,10 @@
 services:
   traefik:
     container_name: traefik
-    image: ghcr.io/traefik/traefik:3.5
+    image: ghcr.io/traefik/traefik:${TRAEFIK_VERSION}
     restart: unless-stopped
     environment:
+      - TZ=${TIMEZONE}
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     networks:
       traefik:

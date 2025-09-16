@@ -1,9 +1,10 @@
 services:
   watchtower:
     container_name: watchtower
-    image: ghcr.io/containrrr/watchtower:latest
+    image: ghcr.io/containrrr/watchtower:${WATCHTOWER_VERSION}
     restart: unless-stopped
     environment:
+      - TZ=${TIMEZONE}
       - WATCHTOWER_CLEANUP=1
       - WATCHTOWER_INCLUDE_RESTARTING=1
       - WATCHTOWER_POLL_INTERVAL=60
