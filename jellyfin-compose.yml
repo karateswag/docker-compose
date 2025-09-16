@@ -1,0 +1,31 @@
+services:
+  jellyfin:
+    container_name: jellyfin
+    image: ghcr.io/jellyfin/jellyfin:${JELLYFIN_VERSION}
+    restart: unless-stopped
+    user: ${UID}:${GID}
+    environment:
+      - TZ=${TIMEZONE}
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.${DOMAIN}
+    networks:
+      - traefik
+    volumes:
+      - jellyfin:/config
+      - cache:/cache
+      - media:/media
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.${DOMAIN}`)"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  media:
+    external: true
+  jellyfin:
+    external: true
+  cache:
