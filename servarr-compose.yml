@@ -132,17 +132,11 @@ networks:
 
 volumes:
   sonarr:
-    external: true
   radarr:
-    external: true
   deluge:
-    external: true
   bazarr:
-    external: true
   prowlarr:
-    external: true
   jellyseerr:
-    external: true
   media:
     external: true
   downloads:
