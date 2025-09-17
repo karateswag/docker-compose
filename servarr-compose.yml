@@ -12,6 +12,7 @@ services:
       - traefik
     volumes:
       - sonarr:/config
+      - servarr_backups:/config/Backups
       - media:/mnt/media
       - downloads:/mnt/downloads
     labels:
@@ -33,6 +34,7 @@ services:
       - traefik
     volumes:
       - radarr:/config
+      - servarr_backups:/config/Backups
       - media:/mnt/media
       - downloads:/mnt/downloads
     labels:
@@ -78,6 +80,7 @@ services:
       - traefik
     volumes:
       - prowlarr:/config
+      - servarr_backups:/config/Backups
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
@@ -97,6 +100,7 @@ services:
       - traefik
     volumes:
       - bazarr:/config
+      - servarr_backups:/config/Backups
       - media:/mnt/media
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -137,6 +141,8 @@ volumes:
   bazarr:
   prowlarr:
   jellyseerr:
+  servarr_backups:
+    external: true
   media:
     external: true
   downloads:
